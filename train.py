@@ -53,6 +53,21 @@ def compute_log_metrics(clf, x_val, y_val):
     bedrock.log_metric("F1 score", f1_score)
     bedrock.log_metric("ROC AUC", roc_auc)
     bedrock.log_metric("Avg precision", avg_prc)
+
+    try:
+        bedrock.log_metric("Test1", {"a": "b", "C": 2})
+        print("1")
+        bedrock.log_metric("Test2", {"a": "b", 2: 3})
+        print("2")
+        bedrock.log_metric("Test3", [1, 2, 3, "a", {4: "d"}, True])
+        print("3")
+        bedrock.log_metric("Test4", "asd")
+        print("4")
+        bedrock.log_metric("Test5", False)
+        print("5")
+    except:
+        pass
+
     bedrock.log_chart_data(y_val.astype(int).tolist(),
                            y_prob.flatten().tolist())
 
