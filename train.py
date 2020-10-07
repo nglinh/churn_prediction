@@ -65,6 +65,12 @@ def compute_log_metrics(clf, x_val, y_val):
         print("4")
         bedrock.log_metric("Test5", False)
         print("5")
+        bedrock.log_metric("Test6", True)
+        print("6")
+        bedrock.log_metric("Test7", 10)
+        print("7")
+        bedrock.log_metric("Test8", 10.0)
+        print("8")
     except:
         pass
 
