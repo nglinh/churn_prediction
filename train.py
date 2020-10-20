@@ -87,10 +87,10 @@ def main():
     features = model_data[FEATURE_COLS].iloc[selected]
     inference = clf.predict_proba(features)[:, 1]
 
-    ModelMonitoringService.export_text(
-        features=features.iteritems(),
-        inference=inference.tolist(),
-    )
+    # ModelMonitoringService.export_text(
+    #     features=features.iteritems(),
+    #     inference=inference.tolist(),
+    # )
 
     print("\tNot saving model")
     # with open("/artefact/" + OUTPUT_MODEL_NAME, "wb") as model_file:
