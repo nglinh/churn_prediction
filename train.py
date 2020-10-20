@@ -92,9 +92,9 @@ def main():
         inference=inference.tolist(),
     )
 
-    print("\tSaving model")
-    with open("/artefact/" + OUTPUT_MODEL_NAME, "wb") as model_file:
-        pickle.dump(clf, model_file)
+    print("\tNot saving model")
+    # with open("/artefact/" + OUTPUT_MODEL_NAME, "wb") as model_file:
+    #     pickle.dump(clf, model_file)
 
 
 if __name__ == "__main__":
