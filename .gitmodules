@@ -1,0 +1,3 @@
+[submodule "churn_prediction"]
+	path = churn_prediction
+	url = https://github.com/basisai/churn_prediction.git
