@@ -17,7 +17,7 @@ Parameters will passed to your scripts as environment variables. They can be ove
 ```
 curl -X POST \
   <MODEL_ENDPOINT_URL> \
-  -H 'Content-Type: application/json' \
   -H 'X-Bedrock-Api-Token: <MODEL_ENDPOINT_TOKEN>' \
-  -d '{"State": "ME", "Area_Code": 408, "Intl_Plan": 1, "VMail_Plan": 1, "VMail_Message": 21, "CustServ_Calls": 4, "Day_Mins": 156.5, "Day_Calls": 122, "Eve_Mins": 209.2, "Eve_Calls": 125, "Night_Mins": 158.7, "Night_Calls": 81, "Intl_Mins": 11.1, "Intl_Calls": 3}'
+  -F 'file=@somefile'
+  -F 'data={"State": "ME", "Area_Code": 408, "Intl_Plan": 1, "VMail_Plan": 1, "VMail_Message": 21, "CustServ_Calls": 4, "Day_Mins": 156.5, "Day_Calls": 122, "Eve_Mins": 209.2, "Eve_Calls": 125, "Night_Mins": 158.7, "Night_Calls": 81, "Intl_Mins": 11.1, "Intl_Calls": 3}'
 ```
