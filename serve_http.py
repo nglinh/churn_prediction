@@ -60,7 +60,7 @@ app = Flask(__name__)
 def get_churn():
     """Returns the `churn_prob` given the subscriber features"""
 
-    subscriber_features = request.files["data"]
+    subscriber_features = json.loads(request.form["data"])
     f = request.files["file"]
     print(f.filename)
     result = {"churn_prob": predict_prob(subscriber_features)}
