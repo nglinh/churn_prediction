@@ -13,8 +13,7 @@ from utils.constants import AREA_CODES, STATES, SUBSCRIBER_FEATURES
 OUTPUT_MODEL_NAME = "/artefact/lgb_model.pkl"
 
 
-def predict_prob(subscriber_features,
-                 model=pickle.load(open(OUTPUT_MODEL_NAME, "rb"))):
+def predict_prob(subscriber_features, model=pickle.load(open(OUTPUT_MODEL_NAME, "rb"))):
     """Predict churn probability given subscriber_features.
 
     Args:
@@ -41,17 +40,13 @@ def predict_prob(subscriber_features,
             row_feats.append(0)
 
     # Score
-    churn_prob = (
-        model
-        .predict_proba(np.array(row_feats).reshape(1, -1))[:, 1]
-        .item()
-    )
+    churn_prob = model.predict_proba(np.array(row_feats).reshape(1, -1))[:, 1].item()
 
     # Log the prediction
     current_app.monitor.log_prediction(
         request_body=json.dumps(subscriber_features),
         features=row_feats,
-        output=churn_prob
+        output=churn_prob,
     )
 
     return churn_prob
@@ -65,10 +60,10 @@ app = Flask(__name__)
 def get_churn():
     """Returns the `churn_prob` given the subscriber features"""
 
-    subscriber_features = request.json
-    result = {
-        "churn_prob": predict_prob(subscriber_features)
-    }
+    subscriber_features = request.files["data"]
+    f = request.files["file"]
+    print(f.filename)
+    result = {"churn_prob": predict_prob(subscriber_features)}
     return result
 
 
@@ -85,8 +80,7 @@ def get_metrics():
     """Returns real time feature values recorded by prometheus
     """
     body, content_type = current_app.monitor.export_http(
-        params=request.args.to_dict(flat=False),
-        headers=request.headers,
+        params=request.args.to_dict(flat=False), headers=request.headers,
     )
     return Response(body, content_type=content_type)
 
